@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -e
+
+static_src=../welp-proxy-johnmastro/client/dist
+
+if [[ $# -ne 1 ]]; then
+    echo "Usage: build TAG"
+    exit 1
+else
+    tag="$1"
+fi
+
+rm -rf ./static
+
+cp -r $static_src ./static
+
+docker build -t $tag .
+
+# vi:syntax=sh
